@@ -1,7 +1,6 @@
 def cal(needle='aababaaba'):
     dict_step = dict()
     for index, letter in enumerate(needle):
-        
         dict_step.setdefault(index, 0)
         for i in range(min(index, len(needle) - index)):
             if needle[:i+1] == needle[index:index+i+1] and i + 1 > dict_step[index]: 

@@ -1,4 +1,5 @@
 def merge_sort(data_list):
+    # 归并排序
     if len(data_list) <= 1:
         return data_list
     mid_index =  len(data_list) // 2
@@ -20,6 +21,7 @@ def merge_sort(data_list):
 
             
 def bubble_sort(data_list, begin):
+    # 冒泡排序
     if begin >= len(data_list) - 1:
         return
     min_index = len(data_list) - 1
@@ -33,6 +35,7 @@ def bubble_sort(data_list, begin):
 
 
 def quick_sort(data_list, left, right):
+    # 快排
     if left >= right:
         return
     i = left
@@ -48,6 +51,37 @@ def quick_sort(data_list, left, right):
     data_list[i] = origin
     quick_sort(data_list, left, i - 1)
     quick_sort(data_list, i + 1, right)
+
+
+def heapify(list_, n, index):
+    # 堆排序递归子函数
+    leatest = index
+    left = index * 2 + 1
+    right = index * 2 + 2
+    if left < n and list_[leatest] < list_[left]:
+        leatest = left
+    if right < n and list_[leatest] < list_[right]:
+        leatest = right
+    if leatest != index:
+        tmp = list_[leatest]
+        list_[leatest] = list_[index]
+        list_[index] = tmp
+        heapify(list_, n, leatest)
+
+
+def heapsort(list_):
+    # 堆排序
+    index = len(list_) // 2 - 1
+    n = len(list_)
+    for i in range(index, -1, -1):
+        heapify(list_, n, i)
+    for i in range(n - 1, -1, -1):
+        tmp = list_[0] 
+        list_[0] = list_[i]
+        list_[i] = tmp
+        heapify(list_, i, 0)
+    print(list_)
+
 
 if __name__ == '__main__':
     data = [1, 2, 8, 5, 123, 7, 3, 4]
